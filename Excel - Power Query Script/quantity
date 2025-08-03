@@ -1,0 +1,12 @@
+= if (
+    [Quantity] = "ERROR" or [Quantity] = "UNKNOWN" or [Quantity] = null
+) and (
+    [Price Per Unit] <> "ERROR" and
+    [Price Per Unit] <> "UNKNOWN" and
+    [Price Per Unit] <> null and
+    [Total Spent] <> "ERROR" and
+    [Total Spent] <> "ERROR" and
+    [Total Spent] <> null
+) then
+    Number.Round(Number.From([Total Spent]) / Number.From([Price Per Unit]), 2)
+else [Quantity]
