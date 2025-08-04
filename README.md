@@ -1,10 +1,10 @@
-# Cafe Sales - A Data Cleaning Project with Analysis
+# Cafe Sales - A Data Cleaning Project
 ### Dataset Source: [**kaggle**](https://www.kaggle.com/datasets/ahmedmohamed2003/cafe-sales-dirty-data-for-cleaning-training)
 ### Original Dataset Author: Ahmed Mohamed
 
 
 ## Overview
-  This project focuses on cleaning and preparing a synthetic dataset representing cafe sales transactions using Excel Power Query, followed by analysis and visualization in Power BI. The goal was to transform inconsistent, incomplete, and messy data into a reliable format suitable for real-world business intelligence and decision-making.
+  This project focuses on cleaning and preparing a synthetic dataset representing cafe sales transactions using Excel Power Query, followed by a small scale sales analysis and visualization using Power BI. The main goal was to transform inconsistent, incomplete, and messy data into a reliable format suitable for real-world business intelligence and decision-making.
 
 
 ## Understanding the Dataset
@@ -195,16 +195,90 @@
 
 ### Data Analysis and Visualization
 To ensure a transparent, complete, and robust insights, the dataset was analyzed through a **split strategy**.
+
+  - **Time-Based Analysis:**
+    - Rows with null or blank entries in the Transaction Date column **(460 entries)** were excluded from **date-dependent analyses** such as monthly trends comparisons. This ensured the visualizations were accurate and not skewed by missing time references.
+
   - **General Attribute Analysis:**
-    - The rest of the dataset—including these 460 entries—was retained for **non-time-based analyses**. These include metrics and patterns related to:
+    - The 460 entries of null or blank values from Transaction Date were retained for **non-time-based analyses**. These include metrics and patterns related to:
       - Item performance
       - Payment method distribution
       - Location-based breakdown
     - This approach preserved valuable categorical information found in rows with missing transaction dates, allowing deeper insights without unnecessary data loss.
-  - **Time-Based Analysis:**
-    - Rows with null or error entries in the Transaction Date column **(460 entries)** were excluded from **date-dependent analyses** such as monthly trends, seasonal patterns, and year-over-year comparisons. This ensured the visualizations were accurate and not skewed by missing time references.
 
 
+#### Categorical Column Distribution Analysis
+
+  - Across the Item, Payment Method, and Location columns, the distribution shows relatively even if the "Unknown" entries were excluded. However, the "Unknown" category shows a disproportionately high percentage in both the Payment Method and Location columns.
+    - Payment Method: 3178 (31.78%) "Unknown" entries.
+    - Location: 3961 (39.61%) "Unknown" entries.
+  
+  - This result would significantly hinder data reliability and limit deeper insights on customer preferences, as well as on cafe operational performance (e.g., transactions, staff allocations, etc.). 
+  
+<p align="left">
+  <img src="https://github.com/Stinrb/Cafe-Sales---Data-Cleaning-Project-and-Analysis/blob/main/Visualizations/Processed/cleaned_transaction_date.png" width="25%" />
+</p>
 
 
+#### Numerical Column Distribution Analysis
 
+- Numerical Columns only shows a small portion of "Unknown" entries since it was remedied by using back-calculation during data cleaning. 
+
+- **Distribution and Average**
+  - **Quantity column** has an **even distribution from 1 to 5**, with an **average value of 3**.
+  - **Price Per Unit column** shows a **large portion on 3 and 4 bins** with an even distribution from the rest of the bins (excluding "Unknown" entries). Price Per Unit also shows an **average value of 3**.
+  - **Total Spent column** has a **large portion on 1-5 bin** which goes down as the value of the bins increases with "Unknown" having the lowest portion. Total Spent has an approximate **average value of 8**.
+ 
+<p align="center">
+  <img src="https://github.com/Stinrb/Cafe-Sales---Data-Cleaning-Project-and-Analysis/blob/main/Visualizations/Power%20BI%20Statis%20Visuals/quantity_bins.png" width="45%" />
+  <img src="https://github.com/Stinrb/Cafe-Sales---Data-Cleaning-Project-and-Analysis/blob/main/Visualizations/Power%20BI%20Statis%20Visuals/quantity_distribution.png" width="45%" />
+</p>
+
+<p align="center">
+  <img src="https://github.com/Stinrb/Cafe-Sales---Data-Cleaning-Project-and-Analysis/blob/main/Visualizations/Power%20BI%20Statis%20Visuals/price_per_unit_bins.png" width="45%" />
+  <img src="https://github.com/Stinrb/Cafe-Sales---Data-Cleaning-Project-and-Analysis/blob/main/Visualizations/Power%20BI%20Statis%20Visuals/price_per_unit_distribution.png" width="45%" />
+</p>
+
+<p align="center">
+  <img src="https://github.com/Stinrb/Cafe-Sales---Data-Cleaning-Project-and-Analysis/blob/main/Visualizations/Power%20BI%20Statis%20Visuals/total_spent_bins.png" width="45%" />
+  <img src="https://github.com/Stinrb/Cafe-Sales---Data-Cleaning-Project-and-Analysis/blob/main/Visualizations/Power%20BI%20Statis%20Visuals/total_spent_distribution.png" width="45%" />
+</p>
+
+
+#### Sales and Item Performance
+
+This section provides a brief snapshot of sales performance. The primary objective of this project is **data cleaning**, so the analysis here remains intentionally light. A more in-depth exploration of trends and metrics can be explored in a future reporting-focused project.
+
+Let's answer a few business targeted questions:
+1. Which item is the most popular?
+2. Is there a sales trend?
+
+- **Item Performance**
+  - **Salad** generated the **highest total revenue** while **Cookie** shows the **lowest** sale.
+  - **Coffee** recorded the **most quantity sold** among all items with **Cookie** having the **least** sold.
+  - The cafe customers spend an **average** of **2.95 per item** and **8.93 per transaction**.
+    
+<p align="center">
+  <img src="https://github.com/Stinrb/Cafe-Sales---Data-Cleaning-Project-and-Analysis/blob/main/Visualizations/Power%20BI%20Statis%20Visuals/item_revenue.png" width="45%" />
+  <img src="https://github.com/Stinrb/Cafe-Sales---Data-Cleaning-Project-and-Analysis/blob/main/Visualizations/Power%20BI%20Statis%20Visuals/item_quantity_sold.png" width="45%" />
+</p>
+
+<p align="center">
+  <img src="https://github.com/Stinrb/Cafe-Sales---Data-Cleaning-Project-and-Analysis/blob/main/Visualizations/Power%20BI%20Statis%20Visuals/table.png" width="60%" />
+</p>
+
+
+- **Sales Trend**
+  - Sales started strong in **January**, but unsually **dipped** the following month of **February**, which also is the **lowest sales** produced that year (2023). Sales performance recovered from the rest of the year with **June** having the **highest peak of sales**, followed by **October**.
+ 
+<p align="center">
+  <img src="https://github.com/Stinrb/Cafe-Sales---Data-Cleaning-Project-and-Analysis/blob/main/Visualizations/Power%20BI%20Statis%20Visuals/monthly_sales_trend.png" width="100%" />
+</p>
+
+
+### Final Key Summary
+
+  1. **Improve Data Entry Accuracy**  
+      - Cafe data collection process needs to be reviewed to avoid "Unknown" entries that can affect the reliability and completeness of the data. This can produce an inconsistencies in insights which can lead to flawed business decisions.
+  2. **Leverage Popular & High-Revenue Items**  
+      - Since Coffee records the most quantity sold, it can mean that it is a staple purchase and can be bought with low price, and since Sald generates the highest item revenue, this presents a sale opportunity by bundling both items seen in combo deals. This can help in boosting the overall Cafe sales in the future.
